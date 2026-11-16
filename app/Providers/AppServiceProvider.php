@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,7 +20,11 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {   
+    {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         Gate::define('kelola-buku', function ($user) {
             return $user->hasAnyRole(['admin', 'petugas']);
         });

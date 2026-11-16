@@ -2,6 +2,7 @@
     "version": 2,
     "outputDirectory": "public",
     "regions": ["sin1"],
+    "$schema": "https://openapi.vercel.sh/vercel.json",
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.8.0"
